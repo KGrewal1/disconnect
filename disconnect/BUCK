@@ -6,12 +6,14 @@ fortran_binary(
     name = "disconnection",
     file = "disconnectionDPS.f90",
     toolchain = "toolchains//:fortran",
-    o_name = "disconnection"
+    o_name = "disconnection",
+    test = "test.json"
 )
 
 fortran_binary(
     name = "rancoords",
     file = "rancoords.f",
     toolchain = "toolchains//:fortran",
-    o_name = "rancoords"
+    o_name = "rancoords",
+    test = "test.json"
 )

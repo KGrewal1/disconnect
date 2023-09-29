@@ -9,20 +9,20 @@ def _fortran_binary_impl(ctx):
 
     ctx.actions.run(cmd, category = "compile")
 
-    def compile_with_header_deps(ctx, artifacts, outputs, dep_file_json=dep_file_json, object=object, src=src):
-        cmd = cmd_args([compiler, src, flags, inc_flags, "-c", "-o", outputs[object].as_output()])
+    # def compile_with_header_deps(ctx, artifacts, outputs, dep_file_json=dep_file_json, object=object, src=src):
+    #     cmd = cmd_args([compiler, src, flags, inc_flags, "-c", "-o", outputs[object].as_output()])
 
-        # for every header in the list, add a hidden dependency on it to the cmd
-        dep_header_list = artifacts[dep_file_json].read_json()
-        for header in dep_header_list:
-            cmd.hidden(ctx.attrs.inputs[CInputsInfo].hdrs[header])
+    #     # for every header in the list, add a hidden dependency on it to the cmd
+    #     dep_header_list = artifacts[dep_file_json].read_json()
+    #     for header in dep_header_list:
+    #         cmd.hidden(ctx.attrs.inputs[CInputsInfo].hdrs[header])
 
-        ctx.actions.run(cmd, category = "compile", identifier = str(outputs[object]))
+    #     ctx.actions.run(cmd, category = "compile", identifier = str(outputs[object]))
 
-    print("test")
+    print(ctx.attrs.test)
 
-    def f(ctx, artifacts, outputs, out=out):
-      print(outputs)
+    # def f(ctx, artifacts, outputs, out=out):
+    #   print(outputs)
 
     # ctx.actions.dynamic_output([out], f)
     return [DefaultInfo(default_output = out), RunInfo(args = cmd_args([out]))]
@@ -33,5 +33,6 @@ fortran_binary = rule(
         "file": attrs.source(),
         "toolchain": attrs.toolchain_dep(),
         "o_name": attrs.string(),
+        "test": attrs.source(),
     },
 )
