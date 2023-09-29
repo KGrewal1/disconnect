@@ -1,0 +1,8 @@
+load("//:fortran_toolchain.bzl", "fortran_local_toolchain")
+
+
+fortran_local_toolchain(
+    name = "fortran",
+    command = "gfortran",
+    visibility = ["PUBLIC"],
+)
