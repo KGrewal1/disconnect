@@ -35,6 +35,6 @@ fortran_binary = rule(
         "file": attrs.source(),
         "toolchain": attrs.toolchain_dep(),
         "o_name": attrs.string(),
-        "tes t": attrs.source(),
+        "test": attrs.source(),
     },
 )
